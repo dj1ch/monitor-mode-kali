@@ -34,7 +34,10 @@ handle_outputs() {
         case "$response" in
             [yY]) 
                 echo "Continuing..."
-                ;;
+                  sudo ip link set wlan0 down
+                  sudo iwconfig wlan0 mode monitor
+                  sudo ip link set wlan0 up
+                  ;;
             [nN]) 
                 echo "Exiting..."
                 exit 0
@@ -53,13 +56,34 @@ ask_to_enter
   fi
 
   # check for wlan1
-  if echo "$secondcheck" | grep -q ""; then
+  if echo "$secondcheck" | grep -q "wlan1"; then
     echo "### Can't find wlan0, or it is not supported. Moving to wlan1..."
-    # Add your code here to handle the error condition for the second output
+        ask_to_enter() {
+        read -p "Enter monitor mode now? (Y/N) " response
+        case "$response" in
+            [yY]) 
+                echo "Continuing..."
+                  sudo ip link set wlan1 down
+                  sudo iwconfig wlan1 mode monitor 
+                  sudo ip link set wlan1 up
+                  ;;
+            [nN]) 
+                echo "Exiting..."
+                exit 0
+                ;;
+            *)
+                echo "Invalid input. Please enter Y or N."
+                ask_to_continue # Ask again if the input is not Y or N
+                ;;
+          esac
+}
+# running the function
+ask_to_enter
   else
     echo "### No wifi card??"
   fi
 }
 
+EOF
 
 

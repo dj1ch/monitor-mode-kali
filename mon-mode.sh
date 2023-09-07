@@ -2,7 +2,7 @@
 # This script will make your Wi-Fi card enter monitor mode, which will turn off any active Wi-Fi connections.
 echo "### Please close anything that uses your internet, as monitor mode will disable Wi-Fi connections."
 
-# Asking function
+# First function
 ask_to_continue() {
   read -p "Do you want to continue (Y/N)? " response
   case "$response" in
@@ -20,10 +20,10 @@ ask_to_continue() {
   esac
 }
 
-# Running the function
+# 1st function being ran
 ask_to_continue
 
-# Check for available Wi-Fi cards
+# wifi card check
 handle_wifi_card() {
   local wifi_cards="$(airmon-ng)"
 
@@ -40,7 +40,7 @@ handle_wifi_card() {
 
   echo "### Found Wi-Fi card: $wifi_interface"
 
-  # Ask the user if they want to enter monitor mode
+  # Ask the user
   read -p "Enter monitor mode for $wifi_interface (Y/N)? " response
   case "$response" in
     [yY]) 
@@ -61,5 +61,5 @@ handle_wifi_card() {
   esac
 }
 
-# Running the function to handle Wi-Fi card
+# mon mode
 handle_wifi_card

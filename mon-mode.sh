@@ -31,6 +31,8 @@ handle_wifi_card() {
     wifi_interface="wlan0"
   elif echo "$wifi_cards" | grep -q "wlan1"; then
     wifi_interface="wlan1"
+  elif echo "$wifi_cards" | grep -q "wlp1s0"; then 
+    wifi_interface="wlp1s0"
   else
     echo "### No compatible Wi-Fi card found."
     exit 1

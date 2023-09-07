@@ -1,8 +1,8 @@
 # This script will put your device into monitor mode! 
 
 ## How to run the script 
-- ```cd monitor-mode-kali```
-- ```sudo bash mon-mode.sh```
+1. ```cd monitor-mode-kali```
+2. ```sudo bash mon-mode.sh```
 
 ### You will need: 
 - iwconfig
